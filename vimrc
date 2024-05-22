@@ -29,7 +29,6 @@ Plug 'github/copilot.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -37,6 +36,7 @@ Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'tpop/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wfleming/vim-codeclimate'
@@ -151,20 +151,6 @@ set expandtab
 "colors"
 set t_Co=256
 set wildmenu
-" Display extra whitespace
-" set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-" if executable('ag')
-"   " Use Ag over Grep
-"   set grepprg=ag\ --nogroup\ --nocolor
-
-"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-"   " ag is fast enough that CtrlP doesn't need to cache
-"   let g:ctrlp_use_caching = 0
-" endif
 
 
 autocmd QuickFixCmdPost *grep* nested cwindow|redraw!          " open quickfix window after using Grep, grep, vimgrep
@@ -173,13 +159,7 @@ autocmd FileType qf wincmd J
 " bind \ (backward slash) to grep shortcut
 nnoremap \ :silent Ggrep! ""<left>
 
-" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" nnoremap <silent> \ :Rg<cr>
-
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" bind \ (backward slash) to grep shortcut
 
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
@@ -248,8 +228,6 @@ nmap gr o<ESC>kO<ESC>j
 
 "insert require pry
 nmap <leader>py orequire "pry"; binding.pry<ESC>
-
-" insert print debugging Ruby and Go
 
 function! PrintDebug()
   if &filetype == "go"
