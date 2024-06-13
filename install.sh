@@ -12,7 +12,6 @@ mkdir -p $HOME/.config/nvim/ && ln -s $(pwd)/config/nvim/* $HOME/.config/nvim
 
 vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 
-ln -s $(pwd)/zshrc $HOME/.zshrc
 # Save the existing zshrc file
 if [[ -n "$CODESPACES" && -e "$HOME/.zshrc" ]]; then
     cp "$HOME/.zshrc" "$HOME/.zshrc_cs"
