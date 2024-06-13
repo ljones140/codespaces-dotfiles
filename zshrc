@@ -3,10 +3,9 @@ export ZSH=/Users/lewisjones/.oh-my-zsh
 
 export EDITOR='nvim'
 
-ZSH_THEME='agnostor'
 
 #plugins
-plugins=(git npm ruby bundler zsh-autosuggestions -finder copypath copyfile zsh-history-substring-search)
+plugins=(git npm ruby bundler zsh-autosuggestions copypath copyfile zsh-history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -16,7 +15,6 @@ KEYTIMEOUT=1
 
 ssh-add -A &> /dev/null
 alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs='git status '
 alias ga='git add '
 alias gb='git branch '
