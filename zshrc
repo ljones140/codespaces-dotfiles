@@ -1,8 +1,7 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/lewisjones/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-export EDITOR='nvim'
-
+export EDITOR='vim'
 
 #plugins
 plugins=(git npm ruby bundler zsh-autosuggestions copypath copyfile zsh-history-substring-search)
@@ -28,11 +27,3 @@ alias toggle-four-nines='echo Actions is no longer part of the default dev conta
 alias ff='bin/toggle-feature-flag'
 alias memex='npm run -w @github-ui/memex'
 
-
-# zsh history substeing search with remaps
-bindkey '^[OA' history-substring-search-up
-bindkey '^[OB' history-substring-search-down
-bindkey "^P" history-substring-search-up
-bindkey "^N" history-substring-search-up
-
-eval "$(rbenv init -)"
