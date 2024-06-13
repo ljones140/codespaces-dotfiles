@@ -15,7 +15,7 @@ vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/geometry-zsh/geometry ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry
-cp  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry.zsh-theme
+cp  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry/geometry.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry.zsh-theme
 
 
 # Save the existing zshrc file

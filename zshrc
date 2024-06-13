@@ -1,17 +1,17 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 
+export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
 
 #plugins
 plugins=(git npm ruby bundler zsh-autosuggestions copypath copyfile zsh-history-substring-search)
 
-source $ZSH/oh-my-zsh.sh
-
 ZSH_THEME='geometry'
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_COLORIZE_ROOT=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
+
+source $ZSH/oh-my-zsh.sh
 
 #speed up escape in vim
 # 10ms for key sequences
