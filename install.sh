@@ -17,6 +17,7 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 git clone https://github.com/geometry-zsh/geometry ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry
 cp  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry/geometry.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry.zsh-theme
 
+chmod 777 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/geometry.zsh-theme
 
 # Save the existing zshrc file
 if [[ -n "$CODESPACES" && -e "$HOME/.zshrc" ]]; then

@@ -6,7 +6,7 @@ export EDITOR='vim'
 #plugins
 plugins=(git npm ruby bundler zsh-autosuggestions copypath copyfile zsh-history-substring-search)
 
-ZSH_THEME='geometry'
+ZSH_THEME=geometry
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_COLORIZE_ROOT=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
