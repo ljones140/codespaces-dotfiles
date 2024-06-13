@@ -12,6 +12,10 @@ mkdir -p $HOME/.config/nvim/ && ln -s $(pwd)/config/nvim/* $HOME/.config/nvim
 
 vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+
+
 # Save the existing zshrc file
 if [[ -n "$CODESPACES" && -e "$HOME/.zshrc" ]]; then
     cp "$HOME/.zshrc" "$HOME/.zshrc_cs"
@@ -27,3 +31,7 @@ cp $(pwd)/zshrc $HOME/.zshrc
 if [[ -n "$CODESPACES" && -e "$HOME/.zshrc_cs" ]]; then
     cat "$HOME/.zshrc_cs" >> "$HOME/.zshrc"
 fi
+
+# Always want to use ZSH as my default shell (e.g. for SSH)
+sudo chsh -s /bin/zsh $(whoami)
+
