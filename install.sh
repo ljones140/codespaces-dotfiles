@@ -35,6 +35,10 @@ fi
 sudo chsh -s /bin/zsh $(whoami)
 source $HOME/.zshrc
 
+# Install geometry oh my zsh theme
+git clone https://github.com/geometry-zsh/geometry
+cp -r geometry/geometry.zsh-theme $HOME/.oh-my-zsh/themes/
+
 if [[node -v]]; then
   echo "Installing Node"
   # Download and install nvm:
