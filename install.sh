@@ -13,6 +13,8 @@ mkdir -p $HOME/.config/nvim/ && ln -s $(pwd)/config/nvim/* $HOME/.config/nvim
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
+mdir -p $HOME/lewis_bin
+cp $(pwd)/lewis_bin/* $HOME/lewis_bin
 # Save the existing zshrc file
 if [[ -n "$CODESPACES" && -e "$HOME/.zshrc" ]]; then
     cp "$HOME/.zshrc" "$HOME/.zshrc_cs"
@@ -64,10 +66,10 @@ if [ $? -eq 0 ]; then
   nvim --headless "+PlugInstall" +qa > /dev/null
 
   # installing packer nvim plugins
-  nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +so +qa > /dev/null
-  nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
+  nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +so +PackerSync +qa > /dev/null
+  # nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
   # setup lanuage servers
-  nvim --headless "+MasonInstall typescript-language-server eslint-lsp golangci-lint gopls buf_ls" +qa > /dev/null 2> /dev/null
+  # nvim --headless "+MasonInstall typescript-language-server eslint-lsp golangci-lint gopls buf_ls" +qa > /dev/null 2> /dev/null
 
   if [[ $PATH != *"$HOME/.local/bin"* ]]; then
     echo "Adding path to $HOME/.profile"
