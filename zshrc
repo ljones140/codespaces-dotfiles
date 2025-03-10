@@ -3,6 +3,8 @@
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
 
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 #plugins
 plugins=(git npm ruby bundler zsh-autosuggestions copypath copyfile zsh-history-substring-search)
 

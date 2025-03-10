@@ -31,20 +31,23 @@ fi
 
 # Always want to use ZSH as my default shell (e.g. for SSH)
 sudo chsh -s /bin/zsh $(whoami)
+source $HOME/.zshrc
 
 echo
-echo "Downloading latest neovim...$nvim_file_part.tar.gz"
-curl -LO https://github.com/neovim/neovim/releases/latest/download/$nvim_file_part.tar.gz
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 if [ $? -eq 0 ]; then
   echo "Success, installing..."
   rm $HOME/.local/bin/nvim
-  tar -C $HOME/.local/opt -xzf $nvim_file_part.tar.gz
-  ln -s $HOME/.local/opt/$nvim_file_part/bin/nvim $HOME/.local/bin/nvim
+  tar -C $HOME/.local/opt -xzf nvim-linux-x86_64.tar.gz
+  ln -s $HOME/.local/opt/nvim-linux-x86_64/bin/nvim $HOME/.local/bin/nvim
   echo "Bootstrapping neovim config... (may take some time)"
 
   # installing packer
   git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+  source $HOME/.vimrc
   # installing .vimrc plugins
   nvim --headless "+PlugInstall" +qa > /dev/null
 
