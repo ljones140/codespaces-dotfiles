@@ -17,7 +17,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'morhetz/gruvbox'
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rking/ag.vim'
