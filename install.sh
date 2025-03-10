@@ -37,7 +37,7 @@ source $HOME/.zshrc
 
 # Install geometry oh my zsh theme
 git clone https://github.com/geometry-zsh/geometry
-cp -r geometry/geometry.zsh $HOME/.oh-my-zsh/themes/geometry.zsh-theme
+ln -s $(pwd)geometry/geometry.zsh $HOME/.oh-my-zsh/themes/geometry.zsh-theme
 
 if [[node -v]]; then
   echo "Installing Node"
