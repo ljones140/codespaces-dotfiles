@@ -45,6 +45,7 @@ Plug 'xero/sourcerer'
 Plug 'tpope/vim-rbenv'
 Plug 'ryanoasis/vim-devicons'
 Plug 'hashivim/vim-terraform'
+Plug 'joshdick/onedark.vim'
 " All of your Plugins must be added before the following line
 call plug#end() "required
 
