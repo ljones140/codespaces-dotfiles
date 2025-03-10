@@ -10,8 +10,6 @@ ln -s $(pwd)/vim $HOME/.vim
 
 mkdir -p $HOME/.config/nvim/ && ln -s $(pwd)/config/nvim/* $HOME/.config/nvim
 
-vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
-
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
@@ -34,3 +32,46 @@ fi
 # Always want to use ZSH as my default shell (e.g. for SSH)
 sudo chsh -s /bin/zsh $(whoami)
 
+echo
+echo "Downloading latest neovim...$nvim_file_part.tar.gz"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/$nvim_file_part.tar.gz
+if [ $? -eq 0 ]; then
+  echo "Success, installing..."
+  rm $HOME/.local/bin/nvim
+  tar -C $HOME/.local/opt -xzf $nvim_file_part.tar.gz
+  ln -s $HOME/.local/opt/$nvim_file_part/bin/nvim $HOME/.local/bin/nvim
+  echo "Bootstrapping neovim config... (may take some time)"
+
+  # installing packer
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+  # installing .vimrc plugins
+  nvim --headless "+PlugInstall" +qa > /dev/null
+
+  # installing packer nvim plugins
+  nvim -u ~/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
+  # setup lanuage servers
+  nvim --headless "+MasonInstall typescript-language-server eslint-lsp golangci-lint gopls buf_ls" +qa > /dev/null 2> /dev/null
+
+  if [[ $PATH != *"$HOME/.local/bin"* ]]; then
+    echo "Adding path to $HOME/.profile"
+    echo "" >> $HOME/.profile
+    echo "# add dot-local path" >> $HOME/.profile
+    echo -e "export PATH=\$HOME/.local/bin:\$PATH" >> $HOME/.profile
+  fi
+
+  if [[ -z $(grep "alias vi=\"nvim\"" $shell_file) ]]; then
+    echo "Adding alias to $shell_file"
+    echo "" >> $shell_file
+    echo -e "alias vi=\"nvim\"" >> $shell_file
+    echo -e "alias vim=\"nvim\"" >> $shell_file
+  fi
+  echo "Done bootstrapping neovim (nvim)."
+  echo
+  echo "Installed at:"
+  echo "$HOME/.local/opt/$nvim_file_part ->"
+  echo "$HOME/.local/bin/nvim"
+  echo
+else
+  echo "Failed to download neovim, aborting."
+fi
