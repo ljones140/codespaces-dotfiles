@@ -64,6 +64,7 @@ if [ $? -eq 0 ]; then
   nvim --headless "+PlugInstall" +qa > /dev/null
 
   # installing packer nvim plugins
+  nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +so +qa > /dev/null
   nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
   # setup lanuage servers
   nvim --headless "+MasonInstall typescript-language-server eslint-lsp golangci-lint gopls buf_ls" +qa > /dev/null 2> /dev/null
