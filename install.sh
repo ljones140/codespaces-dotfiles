@@ -33,6 +33,18 @@ fi
 sudo chsh -s /bin/zsh $(whoami)
 source $HOME/.zshrc
 
+if [[node -v]]; then
+  echo "Installing Node"
+  # Download and install nvm:
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+   # in lieu of restarting the shell
+   \. "$HOME/.nvm/nvm.sh"
+
+  # Download and install Node.js:
+  nvm install 22 > /dev/null
+fi
+
 echo
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
@@ -52,7 +64,7 @@ if [ $? -eq 0 ]; then
   nvim --headless "+PlugInstall" +qa > /dev/null
 
   # installing packer nvim plugins
-  nvim -u ~/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
+  nvim -u $HOME/.config/nvim/lua/lewis/packer.lua --headless +PackerSync +qa > /dev/null
   # setup lanuage servers
   nvim --headless "+MasonInstall typescript-language-server eslint-lsp golangci-lint gopls buf_ls" +qa > /dev/null 2> /dev/null
 
