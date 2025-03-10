@@ -14,7 +14,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
 # Install geometry oh my zsh theme
-# git clone https://github.com/geometry-zsh/geometry $HOME/.oh-my-zsh/custom}/themes/
+git clone https://github.com/geometry-zsh/geometry
+ln -s $(pwd)/geometry/geometry.zsh $HOME/.oh-my-zsh/themes/geometry.zsh-theme
 
 mdir -p $HOME/lewis_bin
 cp $(pwd)/lewis_bin/* $HOME/lewis_bin
