@@ -94,7 +94,6 @@ end)
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
   sources = {
-    { name = "copilot", group_index = 2 },
     { name = 'path', group_index = 2 },
     { name = 'nvim_lsp', group_index = 2 },
     { name = 'buffer', keyword_length = 3},
