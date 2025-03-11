@@ -4,7 +4,6 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
   'gopls',
-  'ruby_lsp',
 })
 
 require('lspconfig').gopls.setup({
@@ -26,42 +25,41 @@ local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local util = require("lspconfig.util")
 
-if not configs.ruby_lsp then
-	local enabled_features = {
-		"documentHighlights",
-		"documentSymbols",
-		"foldingRanges",
-		"selectionRanges",
-		-- "semanticHighlighting",
-		"formatting",
-		"codeActions",
-	}
-
-	configs.ruby_lsp = {
-		default_config = {
-			cmd = { "bundle", "exec", "ruby-lsp" },
-			filetypes = { "ruby" },
-			root_dir = util.root_pattern("Gemfile", ".git"),
-			init_options = {
-				enabledFeatures = enabled_features,
-			},
-			settings = {},
+-- https://github.com/Shopify/ruby-lsp/blob/main/EDITORS.md#neovim-lsp
+lspconfig.ruby_lsp.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		formatter = "rubocop",
+		linters = { "rubocop" },
+		enabledFeatures = {
+			codeActions = true,
+			codeLens = true,
+			completion = true,
+			definition = true,
+			diagnostics = true,
+			documentHighlights = true,
+			documentLink = true,
+			documentSymbols = true,
+			foldingRanges = true,
+			formatting = true,
+			hover = true,
+			inlayHint = true,
+			onTypeFormatting = true,
+			selectionRanges = true,
+			semanticHighlighting = true,
+			signatureHelp = true,
+			typeHierarchy = true,
+			workspaceSymbol = true
 		},
-		commands = {
-			FormatRuby = {
-				function()
-					vim.lsp.buf.format({
-						name = "ruby_lsp",
-						async = true,
-					})
-				end,
-				description = "Format using ruby-lsp",
-			},
+		featuresConfiguration = {
+			inlayHint = {
+				implicitHashValue = true,
+				implicitRescue = true
+			}
 		},
-	}
-end
-
-lspconfig.ruby_lsp.setup({ on_attach = on_attach, capabilities = capabilities })
+	},
+})
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
